@@ -20,10 +20,12 @@
 		}
 
 		th, td{
-			padding:  30px;
+			padding: 30px;
 		}
 
-		
+		table{
+			margin: auto;
+		}
 
 	</style>
 
@@ -92,14 +94,22 @@ toDoApp.controller('toDoController', function($scope){
 		<div class="row">
 			<div class="col-md-12">
 			<h3>Enter a new task</h3>
-				<form ng-submit="addTask()">
-					<div> <p>New Task</p>
-					<input type="text" ng-model="newTask.title">
-					<p>Description</p>
-					<input type="text" ng-model="newTask.description">
-					<p>Deadline</p>
-					<input type="text" ng-model="newTask.deadline">
-					<button class="btn btn-info" type="submit">Add task to list</button>
+				<form class="newToDo" ng-submit="addTask()">
+					<div> 
+						<div class="col-md-3">
+						<h4>New Task</h4>
+						<input type="text" ng-model="newTask.title">
+						</div>
+						<div class="col-md-3">
+						<h4>Description</h4>
+						<input type="text" ng-model="newTask.description">
+						</div>
+						<div class="col-md-3">
+						<h4>Deadline</h4>
+						<input type="text" ng-model="newTask.deadline">
+						</div>
+
+						<button class="btn btn-info" type="submit">Add task to list</button>
 					</div>
 				</form>
 			</div>

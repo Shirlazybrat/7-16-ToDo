@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="toDoApp">
+<head>
+<!-- 1. Make a to-do app
+1a. Make each task an object with a title, description, and a deadline. 
+1a. Make a from that accepts new title, descrtion, and deadline.
+1bonus: Make a checkbox that allows the user to mark a task as complete
+*super bonus: Allow removal of tasks -->
+
+	<title>To Do List</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<style type="text/css" media="screen">
+		thead{
+			font-size: 20px
+		}
+
+		tbody, thead{
+			margin: 50px;
+		}
+
+		th, td{
+			padding:  30px;
+		}
+
+		
+
+	</style>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+<script type="text/javascript">
+var toDoApp = angular.module('toDoApp', []);
+toDoApp.controller('toDoController', function($scope){
+	//$scope.test = "its working";
+	$scope.task = [
+		{
+			title: "wash dog",
+			description: "Make puppy smell pretty",
+			deadline: "Saturday",
+			complete: false
+		},
+
+		{
+			title: "cook",
+			description: "food prep for the week",
+			deadline: "Sunday",
+			complete: false
+		} 
+	];
+
+	console.log($scope.task);
+
+	$scope.removeTask = function(){
+		$scope.task.splice(index,1);
+	}
+
+	$scope.addTask = function(){
+		$scope.task.push($scope.newTask);
+		$scope.newTask = "";
+	}
+});
+
+</script>
+
+</head>
+<body ng-controller="toDoController">
+
+<div class="container text-center">
+	<h1>To-do List</h1>
+
+	<div class="col-md-12">
+		<table class="table-striped">
+			<thead>
+				<tr>
+					<th>Task Title</th>
+					<th>Description</th>
+					<th>Deadline</th>
+					<th>Complete?</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="toDo in task track by $index">
+					<td><a href="#" ng-click="removeTask($index)">{{toDo.title}}</a></td>
+					<td>{{toDo.description}}</td>
+					<td>{{toDo.deadline}}</td>
+					<td>{{toDo.complete}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="row">
+			<div class="col-md-12">
+			<h3>Enter a new task</h3>
+				<form ng-submit="addTask()">
+					<div> <p>New Task</p>
+					<input type="text" ng-model="newTask.title">
+					<p>Description</p>
+					<input type="text" ng-model="newTask.description">
+					<p>Deadline</p>
+					<input type="text" ng-model="newTask.deadline">
+					<button class="btn btn-info" type="submit">Add task to list</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+
+
+
+
+</body>
+</html>
